@@ -15,7 +15,7 @@ from scrapy.settings import overridden_settings, Settings
 from scrapy.signalmanager import SignalManager
 from scrapy.exceptions import ScrapyDeprecationWarning
 from scrapy.utils.ossignal import install_shutdown_handlers, signal_names
-from scrapy.utils.misc import load_object
+from scrapy.utils.misc import create_instance, load_object
 from scrapy.utils.log import (
     LogCounterHandler, configure_logging, log_scrapy_info,
     get_scrapy_root_handler, install_scrapy_root_handler)
@@ -286,7 +286,9 @@ class CrawlerProcess(CrawlerRunner):
                 return
             d.addBoth(self._stop_reactor)
 
-        reactor.installResolver(self._get_dns_resolver())
+        resolver_class = load_object(self.settings["DNS_RESOLVER"])
+        resolver = create_instance(resolver_class, self.settings, self, reactor=reactor)
+        resolver.install_on_reactor()
         tp = reactor.getThreadPool()
         tp.adjustPoolsize(maxthreads=self.settings.getint('REACTOR_THREADPOOL_MAXSIZE'))
         reactor.addSystemEventTrigger('before', 'shutdown', self.stop)
