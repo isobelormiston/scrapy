@@ -279,6 +279,7 @@ class CrawlerProcess(CrawlerRunner):
         :param boolean stop_after_crawl: stop or not the reactor when all
             crawlers have finished
         """
+        print("XXX start called in crawler.py")
         if stop_after_crawl:
             d = self.join()
             # Don't start the reactor if the deferreds are already fired
@@ -287,8 +288,6 @@ class CrawlerProcess(CrawlerRunner):
             d.addBoth(self._stop_reactor)
 
         resolver_class = load_object(self.settings["DNS_RESOLVER"])
-        print("XXXXXXXXXX")
-        print(resolver_class)
         resolver = create_instance(resolver_class, self.settings, self, reactor=reactor)
         resolver.install_on_reactor()
         tp = reactor.getThreadPool()
