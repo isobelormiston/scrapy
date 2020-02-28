@@ -286,6 +286,7 @@ class CrawlerProcess(CrawlerRunner):
                 return
             d.addBoth(self._stop_reactor)
 
+        import pdb; pdb.set_trace()
         resolver_class = load_object(self.settings["DNS_RESOLVER"])
         resolver = create_instance(resolver_class, self.settings, self, reactor=reactor)
         resolver.install_on_reactor()
