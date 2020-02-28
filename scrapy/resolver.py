@@ -78,6 +78,7 @@ class CachingHostnameResolver:
                     print("XXX ipv4 address")
                     self.resolved_ipv4_addresses.append(address)
                     return
+                print("XXX ipv6 address")
                 super(CachingResolutionReceiver, self).addressResolved(address)
                 self.resolved = True
 
@@ -92,6 +93,7 @@ class CachingHostnameResolver:
                 super(CachingResolutionReceiver, self).resolutionComplete()
 
         try:
+            print("End of resolveHostname")
             print("XXX HOSTNAME {}".format(dnscache[hostName]))
             return dnscache[hostName]
         except KeyError:
