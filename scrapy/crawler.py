@@ -131,6 +131,7 @@ class CrawlerRunner(object):
     )
 
     def __init__(self, settings=None):
+        print("@@@ CrawlerRunner init")
         if isinstance(settings, dict) or settings is None:
             settings = Settings(settings)
         self.settings = settings
