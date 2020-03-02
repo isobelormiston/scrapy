@@ -96,6 +96,7 @@ def _run_print_help(parser, func, *a, **kw):
         sys.exit(2)
 
 def execute(argv=None, settings=None):
+    print("@@@ execute starting here")
     if argv is None:
         argv = sys.argv
 
@@ -145,7 +146,7 @@ def execute(argv=None, settings=None):
     cmd.add_options(parser)
     opts, args = parser.parse_args(args=argv[1:])
     _run_print_help(parser, cmd.process_options, args, opts)
-    import pdb; pdb.set_trace()
+    print("@@@ initialising CrawlerProcess here")
 
     cmd.crawler_process = CrawlerProcess(settings)
     _run_print_help(parser, _run_command, cmd, args, opts)
