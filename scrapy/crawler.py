@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 class Crawler(object):
 
     def __init__(self, spidercls, settings=None):
+        print("Crawler init @@@")
         if isinstance(settings, dict) or settings is None:
             settings = Settings(settings)
 
