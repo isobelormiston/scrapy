@@ -76,6 +76,7 @@ def _get_concurrency_delay(concurrency, spider, settings):
 class Downloader(object):
 
     def __init__(self, crawler):
+        print("@@@ Downloader init called")
         self.settings = crawler.settings
         self.signals = crawler.signals
         self.slots = {}
@@ -111,6 +112,7 @@ class Downloader(object):
         return key, self.slots[key]
 
     def _get_slot_key(self, request, spider):
+        print("@@@ _get_slot_key called")
         if 'download_slot' in request.meta:
             return request.meta['download_slot']
 

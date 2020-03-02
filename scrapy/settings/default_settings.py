@@ -60,7 +60,8 @@ DEPTH_PRIORITY = 0
 
 DNSCACHE_ENABLED = True
 DNSCACHE_SIZE = 10000
-DNS_RESOLVER = 'scrapy.resolver.CachingHostnameResolver'
+DNS_RESOLVER = 'scrapy.resolver.CachingThreadedResolver'
+# ^ overwritten when the cmd line setting is added
 DNS_TIMEOUT = 60
 
 DOWNLOAD_DELAY = 0
