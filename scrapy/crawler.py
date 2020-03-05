@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 class Crawler(object):
 
     def __init__(self, spidercls, settings=None):
-        print("Crawler init @@@")
+        print("IPV6-CRAWLING Crawler init")
         if isinstance(settings, dict) or settings is None:
             settings = Settings(settings)
 
@@ -131,7 +131,7 @@ class CrawlerRunner(object):
     )
 
     def __init__(self, settings=None):
-        print("@@@ CrawlerRunner init")
+        print("IPV6-CRAWLING CrawlerRunner init")
         if isinstance(settings, dict) or settings is None:
             settings = Settings(settings)
         self.settings = settings
@@ -280,7 +280,7 @@ class CrawlerProcess(CrawlerRunner):
         :param boolean stop_after_crawl: stop or not the reactor when all
             crawlers have finished
         """
-        print("XXX start called in crawler.py")
+        print("IPV6-CRAWLING start called in crawler.py")
         if stop_after_crawl:
             d = self.join()
             # Don't start the reactor if the deferreds are already fired
